@@ -1,7 +1,5 @@
 package com.cloderia.helion.client.local.ui.page;
 
-import static org.jboss.errai.demo.client.local.Click.Type.DOUBLE;
-import static org.jboss.errai.demo.client.local.Click.Type.SINGLE;
 
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
@@ -14,12 +12,13 @@ import org.jboss.errai.common.client.dom.HTMLElement;
 import org.jboss.errai.common.client.dom.Heading;
 import org.jboss.errai.common.client.dom.MouseEvent;
 import org.jboss.errai.databinding.client.components.ListComponent;
-import org.jboss.errai.demo.client.shared.Country;
 import org.jboss.errai.ui.shared.api.annotations.Bound;
 import org.jboss.errai.ui.shared.api.annotations.DataField;
 import org.jboss.errai.ui.shared.api.annotations.EventHandler;
 import org.jboss.errai.ui.shared.api.annotations.ForEvent;
 import org.jboss.errai.ui.shared.api.annotations.Templated;
+
+import com.cloderia.helion.client.shared.Country;
 
 /**
  * 
