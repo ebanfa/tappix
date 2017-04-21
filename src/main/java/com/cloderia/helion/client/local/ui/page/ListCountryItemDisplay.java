@@ -1,24 +1,16 @@
 package com.cloderia.helion.client.local.ui.page;
 
 
-import javax.enterprise.event.Event;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import org.jboss.errai.common.client.api.IsElement;
-import org.jboss.errai.common.client.dom.DOMUtil;
 import org.jboss.errai.common.client.dom.Div;
 import org.jboss.errai.common.client.dom.HTMLElement;
-import org.jboss.errai.common.client.dom.Heading;
-import org.jboss.errai.common.client.dom.MouseEvent;
-import org.jboss.errai.databinding.client.components.ListComponent;
 import org.jboss.errai.ui.shared.api.annotations.Bound;
 import org.jboss.errai.ui.shared.api.annotations.DataField;
-import org.jboss.errai.ui.shared.api.annotations.EventHandler;
-import org.jboss.errai.ui.shared.api.annotations.ForEvent;
 import org.jboss.errai.ui.shared.api.annotations.Templated;
 
-import com.cloderia.helion.client.shared.Country;
+import com.cloderia.helion.client.shared.util.DateConverter;
 
 /**
  * 
@@ -51,7 +43,7 @@ public class ListCountryItemDisplay extends BaseCountryView implements IsElement
 
   @Override
   public HTMLElement getElement() {
-    return country;
+    return countryListItem;
   }
 
 }
