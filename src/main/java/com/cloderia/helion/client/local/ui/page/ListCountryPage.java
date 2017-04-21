@@ -28,7 +28,7 @@ import com.cloderia.helion.client.shared.service.CountryStorageService;
  * 
  */
 @Page(path = "/country")
-@Templated(value = "country-list-page.html#app-container")
+@Templated(value = "list-country-page.html#app-container")
 public class ListCountryPage extends BasePortalPage {
 
   @Inject
