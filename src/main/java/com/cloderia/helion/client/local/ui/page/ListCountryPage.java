@@ -15,6 +15,7 @@ import org.jboss.errai.ui.nav.client.local.Page;
 import org.jboss.errai.ui.nav.client.local.PageHiding;
 import org.jboss.errai.ui.nav.client.local.PageShown;
 import org.jboss.errai.ui.shared.api.annotations.AutoBound;
+import org.jboss.errai.ui.shared.api.annotations.Bound;
 import org.jboss.errai.ui.shared.api.annotations.DataField;
 import org.jboss.errai.ui.shared.api.annotations.Templated;
 import org.slf4j.Logger;
@@ -38,7 +39,7 @@ public class ListCountryPage extends BasePortalPage {
   @Inject
   @Bound
   @DataField
-  private ListComponent<Country, CountryItemDisplay> list;
+  private ListComponent<Country, ListCountryItemDisplay> list;
 
   /**
    * This is a simple interface for calling a remote HTTP service. Behind this interface, Errai has generated an HTTP
