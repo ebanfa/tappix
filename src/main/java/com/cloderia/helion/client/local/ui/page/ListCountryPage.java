@@ -63,7 +63,7 @@ public class ListCountryPage extends BasePortalPage {
      * Triggers an HTTP request to the CountryStorageService. The call back will be invoked asynchronously to display
      * all retrieved contacts.
      */
-	//countryService.call((final List<Country> countrys) -> binder.getModel().addAll(countrys)).getAllContacts();
+	countryDataService.call((final List<Country> countrys) -> binder.getModel().addAll(countrys)).getAllCountrys();
 
     // Remove placeholder table row from template.
     //DOMUtil.removeAllElementChildren(list.getElement());
