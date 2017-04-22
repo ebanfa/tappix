@@ -32,67 +32,73 @@ import com.cloderia.helion.client.shared.service.CountryStorageService;
 @Templated(value = "list-country-page.html#app-container")
 public class ListCountryPage extends BasePortalPage {
 
-  @Inject
-  @AutoBound
-  private DataBinder<List<Country>> binder;
+	public enum Level {
+    	HIGH,
+    	MEDIUM,
+    	LOW
+	}
+
+  	@Inject
+  	@AutoBound
+  	private DataBinder<List<Country>> binder;
   
-  @Inject
-  @Bound
-  @DataField
-  private ListComponent<Country, ListCountryItemDisplay> list;
+  	@Inject
+  	@Bound
+  	@DataField
+  	private ListComponent<Country, ListCountryItemDisplay> list;
 
-  /**
-   * This is a simple interface for calling a remote HTTP service. Behind this interface, Errai has generated an HTTP
-   * request to the service defined by {@link CountryStorageService} (a JaxRS service).
-   */
-  @Inject
-  private Caller<CountryStorageService> countryDataService;
+  	/**
+     * This is a simple interface for calling a remote HTTP service. Behind this interface, Errai has generated an HTTP
+   	 * request to the service defined by {@link CountryStorageService} (a JaxRS service).
+   	 */
+  	@Inject
+  	private Caller<CountryStorageService> countryDataService;
 
-  @Inject
-  private ClientMessageBus bus;
+  	@Inject
+  	private ClientMessageBus bus;
 
-  @Inject
-  private Logger logger;
+  	@Inject
+  	private Logger logger;
 
-  /**
-   * Register handlers and populate the list of {@link Country Contacts}.
-   */
-  @PostConstruct
-  private void setup() {
-    /*
-     * Triggers an HTTP request to the CountryStorageService. The call back will be invoked asynchronously to display
-     * all retrieved contacts.
+  	/**
+   	 * Register handlers and populate the list of {@link Country Contacts}.
      */
-	countryDataService.call((final List<Country> countrys) -> binder.getModel().addAll(countrys)).getAllCountrys();
+  	@PostConstruct
+  	private void setup() {
+		/*
+		 * Triggers an HTTP request to the CountryStorageService. The call back will be invoked asynchronously to display
+		 * all retrieved contacts.
+		 */
+		countryDataService.call((final List<Country> countrys) -> binder.getModel().addAll(countrys)).getAllCountrys();
 
-    // Remove placeholder table row from template.
-    //DOMUtil.removeAllElementChildren(list.getElement());
+    	// Remove placeholder table row from template.
+    	//DOMUtil.removeAllElementChildren(list.getElement());
 
-    /*
-     * Configure actions for when a CountryDisplay in the list is selected or deselected.
+		/*
+		 * Configure actions for when a CountryDisplay in the list is selected or deselected.
+		 */
+		//list.setSelector(display -> display.setSelected(true));
+		//list.setDeselector(display -> display.setSelected(false));
+  	}
+
+  	/**
+     * This method is invoked when this {@link Page} is attached to the {@link NavigationPanel}.
      */
-    //list.setSelector(display -> display.setSelected(true));
-    //list.setDeselector(display -> display.setSelected(false));
-  }
+  	@PageShown
+  	public void addNavBarButtons() {
+  	}
 
-  /**
-   * This method is invoked when this {@link Page} is attached to the {@link NavigationPanel}.
-   */
-  @PageShown
-  public void addNavBarButtons() {
-  }
+    /**
+     * This method is invoked when this {@link Page} is being removed from the {@link NavigationPanel}.
+     */
+  	@PageHiding
+  	public void removeNavBarButtons() {
+  	}
 
-  /**
-   * This method is invoked when this {@link Page} is being removed from the {@link NavigationPanel}.
-   */
-  @PageHiding
-  public void removeNavBarButtons() {
-  }
-
-  /**
-   * For ignoring remote events that originate from this client.
-   */
-  private boolean sourceIsNotThisClient(final CountryOperation countryOperation) {
-    return countryOperation.getSourceQueueSessionId() == null || !countryOperation.getSourceQueueSessionId().equals(bus.getSessionId());
-  }
+  	/**
+     * For ignoring remote events that originate from this client.
+     */
+  	private boolean sourceIsNotThisClient(final CountryOperation countryOperation) {
+    	return countryOperation.getSourceQueueSessionId() == null || !countryOperation.getSourceQueueSessionId().equals(bus.getSessionId());
+  	}
 }
